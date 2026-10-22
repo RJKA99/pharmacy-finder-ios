@@ -78,12 +78,16 @@ ruby generate_project.rb
 ## Known limitations
 
 - This project was developed on a machine with Xcode Command Line Tools but
-  no full Xcode.app installed, so the SwiftUI app target and the generated
-  `.xcodeproj` could not be locally compiled or run in a simulator during
-  development. `PharmacyKit`'s logic is verified by CI (GitHub Actions runs
-  `swift test` on a macOS runner with full Xcode on every push). **Before
-  submitting, open this project in Xcode and confirm it builds and runs** —
-  check the Actions tab for the latest CI result first.
+  no full Xcode.app installed, so nothing here was compiled locally during
+  development - everything was verified via GitHub Actions instead, on a
+  macOS runner with full Xcode. As of the last push, both CI jobs are green:
+  all 11 `PharmacyKit` tests pass, and `xcodebuild build` succeeds for the
+  full app target (local package dependency included). That confirms it
+  *compiles* cleanly end-to-end; it does not confirm the UI actually looks
+  and behaves right in a simulator, since `xcodebuild build` doesn't launch
+  it. **Before submitting, open this project in Xcode and run it once** to
+  check that - the Actions tab has the current CI status if you want to
+  confirm it's still green first.
 - No map view (the web app has one; this app is list-only, matching the
   brief's "map is a plus, not required").
 - No automated UI tests — covered by `PharmacyKit`'s unit/behavior tests
